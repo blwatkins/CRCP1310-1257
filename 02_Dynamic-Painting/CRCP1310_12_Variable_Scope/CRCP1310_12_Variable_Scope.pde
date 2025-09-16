@@ -1,17 +1,26 @@
+float x;
+float y;
+
 void setup() {
   size(500, 500);
+  x = 250;
+  y = 250;
 }
 
 void draw() {
-  color blue = color(50, 75, 180);
-  design(250, 250, 30, blue);
-  design(150, 150, 20, color(255, 0, 0));
-  design(150, 350, 10, color(200, 100, 50));
-  design(450, 300, 50, color(0));
+  background(0);
+  design(x, y, 50, color(255, 0, 0));
+  
+  design(400, 250, 50, color(0, 255, 0));
+  
+  x = x + 1;
+  y = y + 1;
+  
 }
 
 void mousePressed() {
-  design(mouseX, mouseY, 5, color(255, 255, 0)); 
+  x = mouseX;
+  y = mouseY;
 }
 
 void design(float x, float y, float s, color c) {
