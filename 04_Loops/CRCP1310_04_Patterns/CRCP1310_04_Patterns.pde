@@ -1,9 +1,12 @@
+int totalRects;
+
 void setup() {
   size(500, 500);
+  totalRects = 20;
 }
 
 void draw() {
-  int totalRects = 20;
+  background(0);
   float w = width / (float)totalRects;
   rectMode(CENTER);
 
@@ -32,4 +35,8 @@ void draw() {
 
     rect(x, height / 2, w, h);
   }
+}
+
+void mousePressed() {
+  totalRects = (int)random(1, 500);
 }
