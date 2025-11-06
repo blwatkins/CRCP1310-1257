@@ -1,4 +1,21 @@
-void drawCardDesign(int designNumber, float x, float y, float w, float h, color c) {
+color selectDesignColor(int index) {
+  color result = color(0);
+  
+  if (index >= 0 && index < designColors.length) {
+    result = designColors[index];
+  }
+  
+  return result;
+}
+
+void drawCardDesign(
+  int designNumber,
+  float x,
+  float y,
+  float w,
+  float h,
+  color c)
+{
   if (designNumber == 1) {
     cardDesign1(x, y, w, h, c);
   } else if (designNumber == 2) {
@@ -19,6 +36,14 @@ void drawCard(float x, float y, float w, float h) {
   fill(200);
   strokeWeight(4);
   stroke(0);
+  rect(x, y, w, h, 25);
+}
+
+void drawCardHighlight(float x, float y, float w, float h) {
+  rectMode(CENTER);
+  noFill();
+  strokeWeight(6);
+  stroke(255, 255, 0);
   rect(x, y, w, h, 25);
 }
 
