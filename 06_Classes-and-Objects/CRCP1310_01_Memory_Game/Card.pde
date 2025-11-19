@@ -9,11 +9,11 @@ class Card {
     isFlipped = false;
   }
 
-  void display() {
+  void display(float x, float y, float w, float h) {
     rectMode(CENTER);
     fill(200);
     strokeWeight(4);
     stroke(0);
-    rect(width / 2.0, height / 2.0, 50, 100, 25);
+    rect(x, y, w, h, 25);
   }
 }

@@ -61,7 +61,7 @@ int lives = 3;
 
 void setup() {
   size(500, 500);
-  currentScreen = GAME_WIN_SCREEN;
+  currentScreen = START_SCREEN;
 
   rows = (int)random(2, 6);
   cols = (int)random(2, 6);
