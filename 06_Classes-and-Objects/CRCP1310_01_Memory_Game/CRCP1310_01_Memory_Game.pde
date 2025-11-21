@@ -21,20 +21,44 @@ String playerName = "";
 
 PFont courierFont;
 
+int cardColumns;
+int cardRows;
+
 Card[][] cards;
+
+color[] designColors = {
+  color(255, 0, 0),
+  color(0, 255, 0),
+  color(0, 0, 255),
+  color(255, 255, 0),
+  color(255, 0, 255),
+  color(0, 255, 255),
+  color(0),
+  color(255)
+};
+
+int highlightCol;
+int highlightRow;
+
+Card flippedCard1 = null;
+Card flippedCard2 = null;
+
+int score = 0;
+int livesRemaining = 3;
 
 void setup() {
   size(800, 800);
   currentScreen = START_SCREEN;
   courierFont = loadFont("CourierNewPSMT-64.vlw");
-  
-  cards = new Card[3][3];
-  
-  for (int row = 0; row < cards.length; row++) {
-    for (int col = 0; col < cards[row].length; col++) {
-      cards[row][col] = new Card();
-    }
-  }
+
+  cardColumns = (int)random(2, 6);
+  cardRows = (int)random(2, 6);
+  cards = new Card[cardRows][cardColumns];
+
+  buildCards();
+
+  highlightCol = 0;
+  highlightRow = 0;
 }
 
 void draw() {
@@ -54,5 +78,39 @@ void draw() {
 void keyPressed() {
   if (currentScreen == START_SCREEN) {
     startScreenKeyPressed(key);
+  } else if (currentScreen == GAME_SCREEN) {
+    gameScreenKeyPressed(key, keyCode);
+  }
+}
+
+void buildCards() {
+  int minDesignNumber = 1;
+  int maxDesignNumber = 5;
+
+  int totalCards = cardColumns * cardRows;
+  int totalPairs = totalCards / 2;
+
+  for (int i = 0; i < totalPairs; i++) {
+    int designNumber = (int)random(minDesignNumber, maxDesignNumber + 1);
+    int colorIndex = (int)random(designColors.length);
+    int cardsPlaced = 0;
+
+    while (cardsPlaced < 2) {
+      int row = (int)random(cardRows);
+      int col = (int)random(cardColumns);
+
+      if (cards[row][col] == null) {
+        cards[row][col] = new Card(designNumber, colorIndex);
+        cardsPlaced++;
+      }
+    }
+  }
+
+  for (int row = 0; row < cardRows; row++) {
+    for (int col = 0; col < cardColumns; col++) {
+      if (cards[row][col] == null) {
+        cards[row][col] = new Card(-1, -1);
+      }
+    }
   }
 }

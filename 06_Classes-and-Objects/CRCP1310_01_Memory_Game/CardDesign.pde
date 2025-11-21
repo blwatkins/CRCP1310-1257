@@ -50,3 +50,64 @@ class CardDesign2 extends CardDesign {
     ellipse(x, y, d, d);
   }
 }
+
+class CardDesign3 extends CardDesign {
+  CardDesign3(color designColor) {
+    super(designColor);
+  }
+
+  int getDesignNumber() {
+    return 3;
+  }
+
+  void display(float x, float y, float w, float h) {
+    float d = min(w, h) * 0.5;
+    float r = d / 2.0;
+    strokeWeight(5);
+    stroke(designColor);
+    noFill();
+    ellipse(x, y, d, d);
+    line(x - r, y - r, x + r, y + r);
+  }
+}
+
+class CardDesign4 extends CardDesign {
+  CardDesign4(color designColor) {
+    super(designColor);
+  }
+
+  int getDesignNumber() {
+    return 4;
+  }
+
+  void display(float x, float y, float w, float h) {
+    float d = min(w, h) * 0.5;
+    float r = d / 2.0;
+    strokeWeight(5);
+    stroke(designColor);
+    noFill();
+    ellipse(x, y, d, d);
+    line(x + r, y - r, x - r, y + r);
+  }
+}
+
+class CardDesign5 extends CardDesign {
+  CardDesign5(color designColor) {
+    super(designColor);
+  }
+
+  int getDesignNumber() {
+    return 5;
+  }
+
+  void display(float x, float y, float w, float h) {
+    float d = min(w, h) * 0.5;
+    float r = d / 2.0;
+    strokeWeight(5);
+    stroke(designColor);
+    noFill();
+    ellipse(x, y, d, d);
+    line(x - r, y - r, x + r, y + r);
+    line(x + r, y - r, x - r, y + r);
+  }
+}
