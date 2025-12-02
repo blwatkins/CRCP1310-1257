@@ -1,3 +1,4 @@
 void gameWinScreen() {
-  background(0, 0, 255); 
+  background(24, 87, 43);
+  displayEndOfGameText("Congratulations!", "You have won the memory game!");
 }

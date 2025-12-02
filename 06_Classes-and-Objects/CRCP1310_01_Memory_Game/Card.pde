@@ -23,15 +23,21 @@ class Card {
       }
     }
   }
+  
+  void displayCardBack(float x, float y, float w, float h) {
+    imageMode(CENTER);
+    image(cardBackImage, x, y, w, h);
+  }
 
   void display(float x, float y, float w, float h, boolean isHighlighted) {
-    rectMode(CENTER);
-    fill(200);
-    strokeWeight(4);
-    stroke(0);
-    rect(x, y, w, h, 25);
-
-    if (isFlipped && design != null) {
+    if (!isFlipped) {
+      displayCardBack(x, y, w, h);
+    } else if (isFlipped && design != null) {
+      rectMode(CENTER);
+      fill(200);
+      strokeWeight(4);
+      stroke(0);
+      rect(x, y, w, h, 25);
       design.display(x, y, w, h);
     }
 

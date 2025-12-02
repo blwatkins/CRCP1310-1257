@@ -1,13 +1,13 @@
 // [x] welcome screen
-// game screen
-// - cards
-// - - image back
+// [ ] game screen
+// - [x] cards
+// - - [x] image back
 // - - colorful design from image pixels
-// game over screen
-// game win screen
+// [x] game over screen
+// [ ] game win screen
 // - sprite animation celebration
-// high score system
-// - save high scores with player names
+// [ ] high score system
+// - [ ] save high scores with player names
 
 final int START_SCREEN = 0;
 final int GAME_SCREEN = 1;
@@ -20,6 +20,8 @@ int currentScreen;
 String playerName = "";
 
 PFont courierFont;
+
+PImage cardBackImage;
 
 int cardColumns;
 int cardRows;
@@ -46,10 +48,17 @@ Card flippedCard2 = null;
 int score = 0;
 int livesRemaining = 3;
 
+Table highScoresTable;
+int maximumHighScoreCount = 7;
+
 void setup() {
   size(800, 800);
-  currentScreen = START_SCREEN;
+  currentScreen = HIGH_SCORE_SCREEN;
   courierFont = loadFont("CourierNewPSMT-64.vlw");
+  
+  // Image Source - https://opengameart.org/content/colorful-poker-card-back
+  cardBackImage = loadImage("card-back-black.png");
+  highScoresTable = loadTable("high-scores.csv", "header");
 
   cardColumns = (int)random(2, 6);
   cardRows = (int)random(2, 6);
@@ -80,6 +89,10 @@ void keyPressed() {
     startScreenKeyPressed(key);
   } else if (currentScreen == GAME_SCREEN) {
     gameScreenKeyPressed(key, keyCode);
+  } else if (currentScreen == GAME_OVER_SCREEN || currentScreen == GAME_WIN_SCREEN) {
+    if (key == ENTER || key == RETURN) {
+      currentScreen = HIGH_SCORE_SCREEN;
+    }
   }
 }
 
